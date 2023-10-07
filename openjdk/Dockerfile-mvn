@@ -1,0 +1,8 @@
+ARG  MAVEN_VERSION=3.9.4
+COPY *.tar.gz /tmp/
+RUN  mkdir -p /opt/maven /opt/maven-mvnd &&\
+     tar -xf /tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz -C /opt/maven &&\
+     tar -xf /tmp/maven-mvnd-1.0-m7-m39-linux-amd64.tar.gz -C /opt/maven-mvnd &&\
+     rm -f /tmp/*.gz
+ENV  MAVEN_HOME=/opt/maven/apache-maven-$MAVEN_VERSION \
+     PATH=/opt/maven/apache-maven-$MAVEN_VERSION/bin:/opt/maven-mvnd/maven-mvnd-1.0-m7-m39-linux-amd64/bin/:$PATH
